@@ -766,6 +766,18 @@ contract PmcErc721a is ERC721Enumerable, Ownable {
     _revealFlg[tokenId] = true;
   }
 
+  function revealAllYouHave() external {
+
+    // get all token sender have
+    uint256[] memory tokenIds = walletOfOwner(msg.sender);
+
+    // reveal each
+    for (uint256 i; i < tokenIds.length; i++) {
+      reveal(tokenIds[i]);
+    }
+
+  }
+
 
   function walletOfOwner(address _owner)
     public

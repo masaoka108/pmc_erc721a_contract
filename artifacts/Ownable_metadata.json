@@ -164,11 +164,11 @@
 			]
 		},
 		"PmcErc721a.sol": {
-			"keccak256": "0x74aa64f79faed848579a2408272b59840f1a75f0ddedb3770b0d7bceda123232",
+			"keccak256": "0x818f000bac0c28682ae4e158512e749c54a39a80daa8e1afef9b6893dacf111a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a624e2bed8a71f9f60e4bf95bcea0324aa3434e28189d0f64614d3aabddd2f6a",
-				"dweb:/ipfs/QmXrMw784zCc37HbfkpatLbchxeTfa23E8Ep5HZXa4oeTy"
+				"bzz-raw://8fe9c57fc5fcb14ee1f8055ac9e1398719522bb9d085366a97fe247673ece7fe",
+				"dweb:/ipfs/QmaUDrjBs1bphyni137oyiGpS26o1bytmjT22ezZZQ8LVT"
 			]
 		},
 		"erc721a/contracts/ERC721A.sol": {
