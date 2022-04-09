@@ -464,9 +464,39 @@ abstract contract ERC721Enumerable is ERC721A, IERC721Enumerable {
     /**
      * @dev See {IERC721Enumerable-tokenOfOwnerByIndex}.
      */
-    function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual override returns (uint256) {
-        require(index < ERC721A.balanceOf(owner), "ERC721Enumerable: owner index out of bounds");
-        return _ownedTokens[owner][index];
+    // function tokenOfOwnerByIndex(address owner, uint256 index) public view virtual override returns (uint256) {
+    //     require(index < ERC721A.balanceOf(owner), "ERC721Enumerable: owner index out of bounds");
+    //     return _ownedTokens[owner][index];
+    // }
+
+    /**
+     * @dev See {IERC721Enumerable-tokenOfOwnerByIndex}.
+     * This read function is O(collectionSize). If calling from a separate contract, be sure to test gas first.
+     * It may also degrade with extremely large collection sizes (e.g >> 10000), test for your use case.
+     */
+    function tokenOfOwnerByIndex(address owner, uint256 index)
+        public
+        view
+        override
+        returns (uint256)
+    {
+        require(index < balanceOf(owner), "ERC721A: owner index out of bounds");
+        uint256 numMintedSoFar = totalSupply();
+        uint256 tokenIdsIdx = 0;
+        address currOwnershipAddr = address(0);
+        for (uint256 i = 0; i < numMintedSoFar; i++) {
+            TokenOwnership memory ownership = _ownerships[i];
+            if (ownership.addr != address(0)) {
+                currOwnershipAddr = ownership.addr;
+            }
+            if (currOwnershipAddr == owner) {
+                if (tokenIdsIdx == index) {
+                    return i;
+                }
+                tokenIdsIdx++;
+            }
+        }
+        revert("ERC721A: unable to get token of owner by index");
     }
 
     // /**
@@ -678,6 +708,10 @@ contract PmcErc721a is ERC721Enumerable, Ownable {
   bool public revealed = false;
   string public notRevealedUri;
 
+  // Mapping from token ID to reveal flg
+  mapping(uint256 => bool) private _revealFlg;
+
+
 //   constructor(
 //     string memory _name,
 //     string memory _symbol,
@@ -716,13 +750,22 @@ contract PmcErc721a is ERC721Enumerable, Ownable {
       require(msg.value >= cost * _mintAmount);
     }
 
-    // ERC721A 方式でミント
+    // mint with way of ERC721A
     _safeMint(msg.sender, _mintAmount);
 
     // for (uint256 i = 1; i <= _mintAmount; i++) {
     //   _safeMint(msg.sender, supply + i);
     // }
   }
+
+  function reveal(uint256 tokenId) public {
+    // only token owner is allewed to reveal
+    require(ERC721A.ownerOf(tokenId) == msg.sender, "You'er not owner");
+    
+    // Individual reveal flg set true
+    _revealFlg[tokenId] = true;
+  }
+
 
   function walletOfOwner(address _owner)
     public
@@ -750,9 +793,14 @@ contract PmcErc721a is ERC721Enumerable, Ownable {
     // );
     if (!_exists(tokenId)) revert URIQueryForNonexistentToken();
 
+    // // これは一斉Revealの判定方法
+    // if(revealed == false) {
+    //     return notRevealedUri;
+    // }
 
-    if(revealed == false) {
-        return notRevealedUri;
+    // トークンID　から Reveal されているかチェック
+    if(_revealFlg[tokenId] == false) {
+      return notRevealedUri;
     }
 
     string memory currentBaseURI = _baseURI();

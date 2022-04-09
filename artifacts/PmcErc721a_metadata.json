@@ -427,6 +427,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "reveal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "revealed",
 				"outputs": [
@@ -802,7 +815,7 @@
 					"details": "See {IERC721Enumerable-tokenByIndex}."
 				},
 				"tokenOfOwnerByIndex(address,uint256)": {
-					"details": "See {IERC721Enumerable-tokenOfOwnerByIndex}."
+					"details": "See {IERC721Enumerable-tokenOfOwnerByIndex}. This read function is O(collectionSize). If calling from a separate contract, be sure to test gas first. It may also degrade with extremely large collection sizes (e.g >> 10000), test for your use case."
 				},
 				"tokenURI(uint256)": {
 					"details": "See {IERC721Metadata-tokenURI}."
@@ -906,11 +919,11 @@
 			]
 		},
 		"PmcErc721a.sol": {
-			"keccak256": "0xb355b28295cf27bd7cf67636ffc53fd676d96bb328ea54de1ce4c1e2827278a4",
+			"keccak256": "0x74aa64f79faed848579a2408272b59840f1a75f0ddedb3770b0d7bceda123232",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://09a75d2a4d6437acb5f978b292a417672458cdd0d1552c3e1bbb95694dd95b19",
-				"dweb:/ipfs/QmQatdEboSEoV24wBUB1ySY75WcHbNitUrZ899DQvuuofh"
+				"bzz-raw://a624e2bed8a71f9f60e4bf95bcea0324aa3434e28189d0f64614d3aabddd2f6a",
+				"dweb:/ipfs/QmXrMw784zCc37HbfkpatLbchxeTfa23E8Ep5HZXa4oeTy"
 			]
 		},
 		"erc721a/contracts/ERC721A.sol": {
