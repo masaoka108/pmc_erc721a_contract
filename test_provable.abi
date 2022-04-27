@@ -1,0 +1,167 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "bytesFailure",
+				"type": "bytes"
+			}
+		],
+		"name": "BytesFailure",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "nextStep",
+				"type": "string"
+			}
+		],
+		"name": "LogConstructorInitiated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "integer",
+				"type": "uint256"
+			}
+		],
+		"name": "LogForUnit256",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			}
+		],
+		"name": "LogNewProvableQuery",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "price",
+				"type": "string"
+			}
+		],
+		"name": "LogPriceUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "stringFailure",
+				"type": "string"
+			}
+		],
+		"name": "StringFailure",
+		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "Constructor",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "ETHUSD",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "myid",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "result",
+				"type": "string"
+			}
+		],
+		"name": "__callback",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_myid",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_result",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_proof",
+				"type": "bytes"
+			}
+		],
+		"name": "__callback",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "apiCall",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "updatePrice",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	}
+]
